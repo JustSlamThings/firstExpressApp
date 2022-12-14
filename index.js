@@ -1,6 +1,8 @@
 // Require needed modules.
 const express = require('express')
 
+// const dotenv=require('dotenv')
+require('dotenv').config()
 // Initialize the app object.
 const app = express()
 
@@ -8,18 +10,25 @@ const app = express()
 app.get('/', function (req, res) {
     // This gets sent to the client 
     // (your web browser most likely!)
-    res.send('Hello world')
+    res.send('Hello world');
 })
 
+
+const PORT = process.env.PORT;
 // Create a second route.
 app.get('/second', function (req, res) {
-    res.send('My Second Page!')
+    res.send('Hello World! Welcome to my Second Page!');
+})
+
+
+app.get('/research/:animal', function (req, res) {
+    res.send(`Hello World! Research for ${req.params.animal} - Topic: ${req.query.topic}`);
 })
 
 // Listen for connections.
-app.listen(3000, function () {
-    console.log('I am awake!')
-})
+app.listen(PORT, () =>  {
+    console.log(`Running on port ${PORT}`)
+});
 
 
 
